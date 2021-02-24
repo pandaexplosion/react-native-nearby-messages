@@ -1,8 +1,8 @@
 import { NativeModules, NativeEventEmitter, Platform } from 'react-native';
 import { useEffect, useState, useCallback, useReducer } from 'react';
 
-const { GoogleNearbyMessages } = NativeModules;
-const nearbyEventEmitter = new NativeEventEmitter(GoogleNearbyMessages);
+const { NearbyMessages } = NativeModules;
+const nearbyEventEmitter = new NativeEventEmitter(NearbyMessages);
 
 /**
  * The error descriptor used to distinguish between error events
@@ -94,22 +94,18 @@ export async function connect(config: NearbyConfig): Promise<() => void> {
   }
   if (Platform.OS === 'ios') {
     if (apiKey == null) throw new Error('API Key is required on iOS!');
-    await GoogleNearbyMessages.connect(
-      apiKey,
-      discoveryModes,
-      discoveryMediums
-    );
+    await NearbyMessages.connect(apiKey, discoveryModes, discoveryMediums);
   } else {
-    await GoogleNearbyMessages.connect(discoveryModes, discoveryMediums);
+    await NearbyMessages.connect(discoveryModes, discoveryMediums);
   }
-  return () => GoogleNearbyMessages.disconnect();
+  return () => NearbyMessages.disconnect();
 }
 
 /**
  * Disconnect the Google Nearby Messages API. Also removes any existing subscriptions or publications.
  */
 export function disconnect(): void {
-  GoogleNearbyMessages.disconnect();
+  NearbyMessages.disconnect();
 }
 
 /**
@@ -129,7 +125,7 @@ export async function subscribe(
   onMessageFound?: (message?: string) => void,
   onMessageLost?: (message?: string) => void
 ): Promise<() => void> {
-  await GoogleNearbyMessages.subscribe();
+  await NearbyMessages.subscribe();
   const onMessageFoundUnsubscribe = onMessageFound
     ? onEvent('MESSAGE_FOUND', onMessageFound)
     : undefined;
@@ -147,7 +143,7 @@ export async function subscribe(
  * Unsubscribe the current subscription. Also removes all event listeners for `MESSAGE_FOUND` and `MESSAGE_LOST`.
  */
 export function unsubscribe(): void {
-  GoogleNearbyMessages.unsubscribe();
+  NearbyMessages.unsubscribe();
   removeAllListeners('MESSAGE_FOUND');
   removeAllListeners('MESSAGE_LOST');
 }
@@ -162,7 +158,7 @@ export function unsubscribe(): void {
  * unpublish();
  */
 export async function publish(message: string): Promise<() => void> {
-  await GoogleNearbyMessages.publish(message);
+  await NearbyMessages.publish(message);
   return () => unpublish();
 }
 
@@ -170,7 +166,7 @@ export async function publish(message: string): Promise<() => void> {
  * Stop publishing the last message. Can only call after @see publish has been called.
  */
 export function unpublish(): void {
-  GoogleNearbyMessages.unpublish();
+  NearbyMessages.unpublish();
 }
 
 /**
@@ -181,7 +177,7 @@ export function unpublish(): void {
  * **On iOS**, this function checks if the User has given Bluetooth Permission using the CoreBluetooth API (`CBManager.authorization`). If not yet asked, a "grant permission?" dialog will pop up.
  */
 export function checkBluetoothPermission(): Promise<boolean> {
-  return GoogleNearbyMessages.checkBluetoothPermission();
+  return NearbyMessages.checkBluetoothPermission();
 }
 
 /**
@@ -192,7 +188,7 @@ export function checkBluetoothPermission(): Promise<boolean> {
  * **On iOS**, this function powers on the `CBCentralManager` and returns `true` if it was successfully turned on. If no callback was sent within `10` seconds, a timeout error will be thrown.
  */
 export function checkBluetoothAvailability(): Promise<boolean> {
-  return GoogleNearbyMessages.checkBluetoothAvailability();
+  return NearbyMessages.checkBluetoothAvailability();
 }
 
 /**
