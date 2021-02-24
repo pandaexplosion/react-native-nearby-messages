@@ -317,7 +317,7 @@ class NearbyMessagesModule(reactContext: ReactApplicationContext) :ReactContextB
 
   private fun parseDiscoveryModes(discoveryModes: ReadableArray): Int {
     var discoveryMode = 0
-    val list = discoveryModes as ArrayList<*>
+    val list = discoveryModes.toArrayList()
     if (list.size == 0) return defaultDiscoveryModes
 
     for (mode in list) {
@@ -331,7 +331,7 @@ class NearbyMessagesModule(reactContext: ReactApplicationContext) :ReactContextB
 
   private fun parsePermissionOptions(discoveryMediums: ReadableArray): Int {
     var permissions = 0
-    val list = discoveryMediums as ArrayList<*>
+    val list = discoveryMediums.toArrayList()
     if (list.size == 0) return defaultPermissions
 
     for (medium in list) {
