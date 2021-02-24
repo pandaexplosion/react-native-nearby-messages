@@ -1,6 +1,6 @@
 {
   "name": "@pandaexplosion/react-native-nearby-messages",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Exposes Google Nearby Messages API to React Native",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
