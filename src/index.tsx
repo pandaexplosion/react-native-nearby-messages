@@ -301,6 +301,7 @@ export function useNearbyPublication(
         await publish(message);
         setNearbyStatus('published');
       } catch (e) {
+        console.log(e);
         setNearbyStatus('error');
       }
     };
@@ -392,6 +393,7 @@ export function useNearbySubscription(config: NearbyConfig): SubscriptionState {
         await subscribe(messageFound, messageLost);
         setNearbyStatus('subscribed');
       } catch (e) {
+        console.log(e);
         setNearbyStatus('error');
       }
     };
@@ -466,6 +468,7 @@ export function useNearbySearch(
         await subscribe(messageFound, messageLost);
         setNearbyStatus('subscribed');
       } catch (e) {
+        console.log(e);
         setNearbyStatus('error');
       }
     };

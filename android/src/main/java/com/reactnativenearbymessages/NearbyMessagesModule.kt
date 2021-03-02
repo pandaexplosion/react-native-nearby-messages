@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package com.reactnativenearbymessages
 
 import android.Manifest
@@ -15,12 +17,11 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.nearby.Nearby
 import com.google.android.gms.nearby.messages.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 const val defaultDiscoveryModes = Strategy.DISCOVERY_MODE_BROADCAST or Strategy.DISCOVERY_MODE_SCAN
 const val defaultPermissions = NearbyPermissions.DEFAULT
 
-class NearbyMessagesModule(reactContext: ReactApplicationContext) :ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
+class NearbyMessagesModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext), LifecycleEventListener {
   private enum class EventType(private val _type: String) {
     MESSAGE_FOUND("MESSAGE_FOUND"),
     MESSAGE_LOST("MESSAGE_LOST"),
@@ -114,7 +115,6 @@ class NearbyMessagesModule(reactContext: ReactApplicationContext) :ReactContextB
     _publishOptions = null
     _isSubscribed = false
     _publishedMessage = null
-    _messagesClient = null
   }
 
   @ReactMethod
