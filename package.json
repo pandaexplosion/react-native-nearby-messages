@@ -36,13 +36,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/chadmorrow/react-native-nearby-messages",
+  "repository": "https://github.com/pandaexplosion/react-native-nearby-messages",
   "author": "Chad Morrow <chad.b.morrow@gmail.com> (https://github.com/chadmorrow)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/chadmorrow/react-native-nearby-messages/issues"
+    "url": "https://github.com/pandaexplosion/react-native-nearby-messages/issues"
   },
-  "homepage": "https://github.com/chadmorrow/react-native-nearby-messages#readme",
+  "homepage": "https://github.com/pandaexplosion/react-native-nearby-messages#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
