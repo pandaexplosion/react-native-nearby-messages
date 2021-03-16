@@ -17,5 +17,9 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
 
-  s.dependency "React-Core"
+    s.source_files = "ios/**/*.{h,c,m,swift}"
+    s.requires_arc = true
+
+    s.dependency "React-Core"
+    s.dependency "NearbyMessages"
 end
